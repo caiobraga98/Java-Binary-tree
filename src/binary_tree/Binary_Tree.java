@@ -33,15 +33,35 @@ public class Binary_Tree {
         }
     }
 
-    public void profundidadeNo(Node no){
+    public int profundidadeNo(Node no) {
 //numero de ancestrais
-    }
-    public void alturaNo(Node no){
-//numero de descendentes
-    }
-    public void grauNo(Node no){
+        int deep = 0;
+        Node aux = no;
 
+        while (aux.hasFather() == true) {
+            deep++;
+            aux = aux.getFatherNode();
+        }
+
+        return deep;
     }
+
+    public int grauNo(Node no){
+        int grau = 0;
+
+        if (no.hasRightChld() == true) {
+            grau++;
+        }
+        if (no.hasLeftChld() == true) {
+            grau++;
+        }
+        return grau;
+    }
+
+    public void alturaNo(Node no){
+        //numero de descendentes
+    }
+
     public void qtdNo(){
 
     }

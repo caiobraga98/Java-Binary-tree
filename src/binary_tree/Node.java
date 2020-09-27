@@ -15,7 +15,7 @@ public class Node {
         this.value = value;
         this.fatherNode = fatherNode;
     }
-
+    public boolean hasFather() { return fatherNode != null; }
     public boolean hasLeftChld(){
         return leftnode != null;
     }
