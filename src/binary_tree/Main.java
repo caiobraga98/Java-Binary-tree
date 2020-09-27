@@ -1,5 +1,7 @@
 package binary_tree;
 
+import javax.swing.*;
+
 public class Main {
 
 
@@ -12,15 +14,16 @@ public class Main {
         teste.addNodeRight(2, nod);
 
         teste.grauNo(nod);
-
+        teste.nivelNo(nod);
         Node lef = nod.leftnode;
         teste.addNodeRight(3, lef);
 
             teste.profundidadeNo(lef);
-            System.out.println(teste.profundidadeNo(lef.getRightnode()));
+            System.out.println("profundidade: \t" + teste.profundidadeNo(lef));
 
 //            teste.addNodeLeft(4, lef);
-//            System.out.println(teste.grauNo(nod));
+            System.out.println("grau do nó: \t" + teste.grauNo(lef));
+            System.out.println("nivel do nó: \t" + teste.nivelNo(lef));
 //        System.out.println(nod.getValue());
 //        System.out.println(nod.leftnode.getValue());
 //        System.out.println(nod.rightnode.getValue());

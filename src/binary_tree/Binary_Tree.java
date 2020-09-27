@@ -58,6 +58,18 @@ public class Binary_Tree {
         return grau;
     }
 
+    public int nivelNo(Node no) {
+        int lvl = 1;
+        Node aux = no;
+
+        while (aux.hasFather() == true) {
+            lvl++;
+            aux = aux.getFatherNode();
+        }
+
+        return lvl;
+    }
+
     public void alturaNo(Node no){
         //numero de descendentes
     }
