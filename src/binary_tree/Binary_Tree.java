@@ -4,25 +4,23 @@ public class Binary_Tree {
 
     private Node pai;
 
-    public void addNodeLeft(int value,Node pai){
+    public void addNodeLeft(Node pai,Node filho){
         Node aux;
         if(pai.hasLeftChld() == true){
             System.out.println("impossivel adcionar pois esse nó possui "+pai.getValue()+ "como filho esquerdo.");
         }else{
-            aux = new Node(value,pai);
-            pai.setLeftnode(aux);
-            aux.setFatherNode(pai);
+            pai.setLeftnode(filho);
+            filho.setFatherNode(pai);
         }
 
     }
-    public void addNodeRight(int value,Node pai){
+    public void addNodeRight(Node pai,Node filha){
         Node aux;
         if(pai.hasRightChld() == true){
             System.out.println("impossivel adcionar pois esse nó possui "+pai.getValue()+ "como filho direito.");
         }else{
-            aux = new Node(value,pai);
-            pai.setRightnode(aux);
-            aux.setFatherNode(pai);
+           pai.setRightnode(filha);
+           filha.setFatherNode(pai);
         }
     }
 
@@ -56,6 +54,7 @@ public class Binary_Tree {
             grau++;
         }
         return grau;
+
     }
 
     public int nivelNo(Node no) {
@@ -74,14 +73,20 @@ public class Binary_Tree {
         //numero de descendentes
     }
     int i;
+    Node aux,aux2;
     public void qtdNo(){
-        if(pai.hasRightChld()){
+        aux = pai;
+        if(aux.hasRightChld() == true){
             i++;
-           qtdNo();
-        }
-        if(pai.hasLeftChld()){
-            i++;
+            aux = pai.getRightnode();
             qtdNo();
+        }
+        else if(aux.hasLeftChld() == true){
+            i++;
+            aux = pai.getLeftnode();
+            qtdNo();
+        }else{
+            System.out.println("a quantidade de nos é " + i);
         }
 
     }
