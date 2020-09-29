@@ -73,8 +73,16 @@ public class Binary_Tree {
     public void alturaNo(Node no){
         //numero de descendentes
     }
-
+    int i;
     public void qtdNo(){
+        if(pai.hasRightChld()){
+            i++;
+           qtdNo();
+        }
+        if(pai.hasLeftChld()){
+            i++;
+            qtdNo();
+        }
 
     }
 
