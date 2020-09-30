@@ -96,31 +96,46 @@ public class Binary_Tree {
 //            }
 //        }
 
-        if(no == null){
-            return 0 ;
+        if (no == null) {
+            return 0;
         }
-        return  1 +  max(alturaNo(no.leftnode), alturaNo(no.rightnode));
+        return 1 + max(alturaNo(no.leftnode), alturaNo(no.rightnode));
 
     }
 
 
-    int i;
-    Node aux, aux2;
+//    int i;
+//    Node aux, aux2;
+//
+//    public void qtdNo() {
+//
+//        aux = pai;
+//        if (aux.hasRightChld() == true) {
+//            i++;
+//            aux = pai.getRightnode();
+//            qtdNo();
+//        } else if (aux.hasLeftChld() == true) {
+//            i++;
+//            aux = pai.getLeftnode();
+//            qtdNo();
+//        } else {
+//            System.out.println("a quantidade de nos é " + i);
+//        }
+//
+//    }
 
-    public void qtdNo() {
-        aux = pai;
-        if (aux.hasRightChld() == true) {
-            i++;
-            aux = pai.getRightnode();
-            qtdNo();
-        } else if (aux.hasLeftChld() == true) {
-            i++;
-            aux = pai.getLeftnode();
-            qtdNo();
+    public int qtdNo(Node no) {
+
+        if (no == null) {
+            return 0;
         } else {
-            System.out.println("a quantidade de nos é " + i);
-        }
+            if (no.hasLeftChld() != true && no.hasRightChld() != true) {
+                return 1;
+            } else {
 
+                return 1 + qtdNo(no.leftnode) + qtdNo(no.rightnode);
+            }
+        }
     }
 
 }

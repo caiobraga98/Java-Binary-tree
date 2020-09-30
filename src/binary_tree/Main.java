@@ -12,20 +12,26 @@ public class Main {
         Node nod2 = new Node();
         Node nod3 = new Node();
         Node nod4 = new Node();
+        Node nod5 = new Node();
+        Node nod6 = new Node();
+        Node nod7 = new Node();
 
         teste.addNodeFather(nod1);
         teste.addNodeLeft(nod1, nod2);
         teste.addNodeRight(nod1, nod3);
-        //teste.addNodeRight(nod3, nod4);
+        teste.addNodeLeft(nod2, nod4);
+        teste.addNodeRight(nod2, nod5);
+        teste.addNodeLeft(nod3, nod6);
+        teste.addNodeRight(nod3, nod7);
 
-        teste.alturaNo(nod1);
 
-        //teste.addNodeLeft(1, nod);
-        //teste.addNodeRight(2, nod);
+        System.out.println("Grau do nó: " + teste.grauNo(nod2));
+        System.out.println("Profundidade: " + teste.profundidadeNo(nod2));
+        System.out.println("Altura do nó: " + teste.alturaNo(nod2));
+        System.out.println("Nivel do nó: " + teste.nivelNo(nod2));
+        System.out.println("Quantidade de nós: " + teste.qtdNo(nod2));
 
-        //    System.out.println(teste.grauNo(nod1));
-        //    System.out.print(teste.profundidadeNo(nod1));
-        System.out.print(teste.alturaNo(nod1));
+
 
         // teste.nivelNo(nod);
         // Node lef = nod.leftnode;
