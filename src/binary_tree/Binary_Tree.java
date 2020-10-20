@@ -167,6 +167,17 @@ public class Binary_Tree {
         }
     }
 
+    public void inverterArvore(Node no) {
+
+        System.out.println("\n Arvore Original ");
+        preOrdem(no);
+        Node aux = no.getRightnode();
+        no.setRightnode(no.getLeftnode());
+        no.setLeftnode(aux);
+        System.out.println("\n Arvore invertida ");
+        preOrdem(no);
+    }
+
 //    public Node buscaNoFolha(Node no) {
 //        while (no.getRightnode() != null){
 //            no = no.getRightnode();

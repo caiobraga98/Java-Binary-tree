@@ -18,18 +18,18 @@ public class Main {
         Node nod8 = new Node();
         Node nod9 = new Node();
 
-        teste.addNodeFather(8, nod1);
-        teste.addNodeLeft(3, nod1, nod2);
-        teste.addNodeRight(10, nod1, nod3);
-        teste.addNodeLeft(1, nod2, nod4);
-        teste.addNodeRight(6, nod2, nod5);
+        teste.addNodeFather(8, nod1);           // F
+        teste.addNodeLeft(3, nod1, nod2);       // B
+        teste.addNodeRight(10, nod1, nod3);     // G
+        teste.addNodeLeft(1, nod2, nod4);       // A
+        teste.addNodeRight(6, nod2, nod5);      // D
         //teste.addNodeLeft(5, nod3, nod6);
         //teste.addNodeLeft(6, nod3, nod7);
 
-        teste.addNodeRight(14 , nod3, nod6);
-        teste.addNodeLeft(4, nod5, nod7);
-        teste.addNodeRight(7 , nod5, nod8);
-        teste.addNodeLeft(13, nod6, nod9);
+        teste.addNodeRight(14 , nod3, nod6);    // I
+        teste.addNodeLeft(4, nod5, nod7);       // C
+        teste.addNodeRight(7 , nod5, nod8);     // E
+        teste.addNodeLeft(13, nod6, nod9);      // H
 
 
         System.out.println("Grau do nó: " + teste.grauNo(nod1));
@@ -49,6 +49,8 @@ public class Main {
         teste.posOrdem(nod1);
         System.out.println("\n Em Ordem ");
         teste.inOrdem(nod1);
+
+        teste.inverterArvore(nod1);
 
 
         // teste.nivelNo(nod);
