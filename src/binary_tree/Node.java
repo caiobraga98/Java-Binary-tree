@@ -16,12 +16,8 @@ public class Node {
         this.fatherNode = fatherNode;
     }
     public boolean hasFather() { return fatherNode != null; }
-    public boolean hasLeftChld(){
-        return leftnode != null;
-    }
-    public boolean hasRightChld(){
-        return rightnode != null;
-    }
+    public boolean hasLeftChld(){return leftnode != null; }
+    public boolean hasRightChld(){return rightnode != null; }
 
     public int getValue() {
         return value;
