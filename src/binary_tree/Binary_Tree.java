@@ -63,6 +63,7 @@ public class Binary_Tree {
 
     }
 
+
     public int nivelNo(Node no) {
         int lvl = 1;
         Node aux = no;
@@ -104,15 +105,15 @@ public class Binary_Tree {
 
         if (no.hasRightChld() == false && no.hasLeftChld() == false) {
             Node aux = no.getFatherNode();
-            System.out.println("teste");
+
             if (aux.getLeftnode() == no) {
                 //no = null;
-                System.out.print("L");
+
                 aux.setLeftnode(null);
             }
             if (aux.getRightnode() == no) {
                 //no = null;
-                System.out.print("R");
+
                 aux.setRightnode(null);
             }
         }
@@ -127,14 +128,14 @@ public class Binary_Tree {
             if (aux.getLeftnode() == no) {
                 //no = null;
                 Node filho = no.getLeftnode();
-                System.out.print("L");
+
                 aux.setLeftnode(filho);
                 filho.setFatherNode(aux);
             }
             if (aux.getRightnode() == no) {
                 //no = null;
                 Node filho = no.getRightnode();
-                System.out.print("R");
+
                 aux.setRightnode(filho);
                 filho.setFatherNode(aux);
             }
@@ -177,6 +178,7 @@ public class Binary_Tree {
         System.out.println("\n Arvore invertida ");
         preOrdem(no);
     }
+
 
 //    public Node buscaNoFolha(Node no) {
 //        while (no.getRightnode() != null){

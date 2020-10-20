@@ -32,16 +32,17 @@ public class Main {
         teste.addNodeLeft(13, nod6, nod9);      // H
 
 
-        System.out.println("Grau do nó: " + teste.grauNo(nod1));
-        System.out.println("Profundidade: " + teste.profundidadeNo(nod1));
-        System.out.println("Altura do nó: " + teste.alturaNo(nod1));
-        System.out.println("Nivel do nó: " + teste.nivelNo(nod1));
-        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
+        //System.out.println("Grau do nó: " + teste.grauNo(nod1));
+        //System.out.println("Profundidade: " + teste.profundidadeNo(nod1));
+        //System.out.println("Altura do nó: " + teste.alturaNo(nod1));
+        //System.out.println("Nivel do nó: " + teste.nivelNo(nod1));
 
-        //teste.removerNoFolha(nod7);
-        //teste.removerNo(nod3);
-        //teste.removerNoDuo(nod3); numsei
-        //System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
+
+        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
+        teste.removerNoFolha(nod7);
+        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
+        teste.removerNo(nod3);
+        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
 
         System.out.println("\n Pre Ordem ");
         teste.preOrdem(nod1);
