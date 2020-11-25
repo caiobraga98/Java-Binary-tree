@@ -179,6 +179,24 @@ public class Binary_Tree {
         preOrdem(no);
     }
 
+    public boolean ehSimilar(Node raizA, Node raizB) {
+
+        if (raizA == null && raizB == null) {
+            System.out.println("É similar");
+            return true;
+        } else if (raizA == null && raizB != null || raizA != null && raizB == null) {
+            System.out.println("Não é similar");
+            return false;
+        }
+        if (raizA.getValue() == raizB.getValue() && ehSimilar(raizA.getRightnode(), raizB.getRightnode()) == true
+                && ehSimilar(raizA.getLeftnode(), raizB.getLeftnode()) == true) {
+            System.out.println("É similar");
+            return true;
+        } else
+            System.out.println("Não é similar");
+            return false;
+    }
+
 
 //    public Node buscaNoFolha(Node no) {
 //        while (no.getRightnode() != null){

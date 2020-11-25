@@ -23,9 +23,6 @@ public class Main {
         teste.addNodeRight(10, nod1, nod3);     // G
         teste.addNodeLeft(1, nod2, nod4);       // A
         teste.addNodeRight(6, nod2, nod5);      // D
-        //teste.addNodeLeft(5, nod3, nod6);
-        //teste.addNodeLeft(6, nod3, nod7);
-
         teste.addNodeRight(14 , nod3, nod6);    // I
         teste.addNodeLeft(4, nod5, nod7);       // C
         teste.addNodeRight(7 , nod5, nod8);     // E
@@ -37,12 +34,33 @@ public class Main {
         //System.out.println("Altura do nó: " + teste.alturaNo(nod1));
         //System.out.println("Nivel do nó: " + teste.nivelNo(nod1));
 
+        Node nod11 = new Node();
+        Node nod12 = new Node();
+        Node nod13 = new Node();
+        teste.addNodeFather(10, nod11);
+        teste.addNodeLeft(5, nod11, nod12);
+        teste.addNodeRight(15, nod11, nod13);
 
-        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
-        teste.removerNoFolha(nod7);
-        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
-        teste.removerNo(nod3);
-        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
+        Node nod14 = new Node();
+        Node nod15 = new Node();
+        Node nod16 = new Node();
+        teste.addNodeFather(10, nod14);
+        teste.addNodeLeft(5, nod14, nod15);
+        teste.addNodeRight(15, nod14, nod16);
+
+        teste.ehSimilar(nod11, nod14);
+
+//        System.out.println("\n Pre Ordem ");
+//        teste.preOrdem(nod1);
+//        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
+//        teste.removerNoFolha(nod7);
+//        System.out.println("\n Pre Ordem ");
+//        teste.preOrdem(nod1);
+//        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
+//        teste.removerNo(nod3);
+//        System.out.println("\n Pre Ordem ");
+//        teste.preOrdem(nod1);
+//        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
 
         System.out.println("\n Pre Ordem ");
         teste.preOrdem(nod1);
