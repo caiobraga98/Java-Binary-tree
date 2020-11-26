@@ -4,6 +4,7 @@ package binary_tree;
 
 public class Node {
     int value;
+    int altura;
     Node leftnode,rightnode,fatherNode;
 
     public Node() {
@@ -15,6 +16,23 @@ public class Node {
         this.value = value;
         this.fatherNode = fatherNode;
     }
+
+    public Node(int value, int altura, Node leftnode, Node rightnode, Node fatherNode) {
+        this.value = value;
+        this.altura = altura;
+        this.leftnode = leftnode;
+        this.rightnode = rightnode;
+        this.fatherNode = fatherNode;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+
     public boolean hasFather() { return fatherNode != null; }
     public boolean hasLeftChld(){return leftnode != null; }
     public boolean hasRightChld(){return rightnode != null; }
@@ -50,4 +68,7 @@ public class Node {
     public void setFatherNode(Node fatherNode) {
         this.fatherNode = fatherNode;
     }
+
+    //metodos AVL
+
 }

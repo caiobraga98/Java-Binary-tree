@@ -1,6 +1,7 @@
 package binary_tree;
 
 import static java.lang.Integer.max;
+import static javax.swing.Spring.height;
 
 public class Binary_Tree {
 
@@ -63,7 +64,6 @@ public class Binary_Tree {
 
     }
 
-
     public int nivelNo(Node no) {
         int lvl = 1;
         Node aux = no;
@@ -85,7 +85,6 @@ public class Binary_Tree {
         return 1 + max(alturaNo(no.leftnode), alturaNo(no.rightnode));
 
     }
-
 
     public int qtdNo(Node no) {
 
@@ -119,7 +118,6 @@ public class Binary_Tree {
         }
     }
 
-    // remoção quando o no só tem um filho
     public void removerNo(Node no) {
         Node aux = no.getFatherNode();
         if (no.hasLeftChld() == true && no.hasRightChld() == false ||
@@ -197,42 +195,24 @@ public class Binary_Tree {
             return false;
     }
 
+/////Metodos AVL
 
-//    public Node buscaNoFolha(Node no) {
-//        while (no.getRightnode() != null){
-//            no = no.getRightnode();
-//        }
-//        return no;
-//    }
-//
-//    //remoção quando tem 2 filhos
-//    public void removerNoDuo(Node no) {
-//        Node aux = no.getFatherNode();
-//        Node novo = new Node();
-//
-//        if (no.hasRightChld() == true && no.hasLeftChld() == true) {
-//            System.out.println("2");
-//            novo = buscaNoFolha(no);
-//            if (aux.getLeftnode() == no) {
-//
-//                aux.setLeftnode(novo);
-//                novo.setLeftnode(no.getLeftnode());
-//                novo.setRightnode(no.getRightnode());
-//                novo.setFatherNode(aux);
-//                no.getLeftnode().setFatherNode(novo);
-//                no.getRightnode().setFatherNode(novo);
-//            }
-//            if (aux.getRightnode() == no) {
-//                aux.setRightnode(novo);
-//                novo.setLeftnode(no.getLeftnode());
-//                novo.setRightnode(no.getRightnode());
-//                novo.setFatherNode(aux);
-//                no.getLeftnode().setFatherNode(novo);
-//                no.getRightnode().setFatherNode(novo);
-//            }
-//        }
-//
-//    }
+    int height(Node N) {
+        if (N == null)
+            return 0;
+
+        return N.getAltura();
+    }
+
+    int getBalance(Node N) {
+        if (N == null)
+            return 0;
+
+        return height(N.leftnode) - height(N.rightnode);
+    }
+
+
+
 
 
 }
