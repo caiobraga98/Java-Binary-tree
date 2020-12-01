@@ -2,9 +2,12 @@
 package binary_tree;
 
 
+import java.awt.*;
+
 public class Node {
     int value;
     int altura;
+    Color cor;
     Node leftnode,rightnode,fatherNode;
 
     public Node() {
@@ -69,6 +72,14 @@ public class Node {
         this.fatherNode = fatherNode;
     }
 
-    //metodos AVL
+    //metodos Black RED
 
+
+    public Color getCor() {
+        return cor;
+    }
+
+    public void setCor(Color cor) {
+        this.cor = cor;
+    }
 }

@@ -1,25 +1,31 @@
 package binary_tree;
 
+import java.awt.*;
+
 import static java.lang.Integer.max;
 import static javax.swing.Spring.height;
 
 public class Binary_Tree {
 
     private Node pai;
+    private Node raiz;
 
-    public void addNodeLeft(int value, Node pai, Node filho) {
+    public void addNodeLeft(int value, Color cor, Node pai, Node filho) {
         Node aux;
+        Node tio;
         if (pai.hasLeftChld() == true) {
             System.out.println("impossivel adcionar pois esse nó possui " + pai.getValue() + "como filho esquerdo.");
         } else {
-            pai.setLeftnode(filho);
-            filho.setFatherNode(pai);
-            filho.setValue(value);
+                pai.setLeftnode(filho);
+                filho.setFatherNode(pai);
+                filho.setValue(value);
+                filho.setCor(Color.RED);
+                recolor(filho);
         }
 
     }
 
-    public void addNodeRight(int value, Node pai, Node filha) {
+    public void addNodeRight(int value, Color cor, Node pai, Node filha) {
         Node aux;
         if (pai.hasRightChld() == true) {
             System.out.println("impossivel adcionar pois esse nó possui " + pai.getValue() + "como filho direito.");
@@ -27,12 +33,16 @@ public class Binary_Tree {
             pai.setRightnode(filha);
             filha.setFatherNode(pai);
             filha.setValue(value);
+            filha.setCor(Color.RED);
+            recolor(filha);
         }
     }
 
-    public void addNodeFather(int value, Node no) {
+    public void addNodeFather(int value, Node no, Color cor) {
         if (pai == null) {
             pai = no;
+            raiz = pai;
+            cor = Color.BLACK;
             pai.setValue(value);
             System.out.println("Nó inicial adcionado!");
         }
@@ -192,7 +202,7 @@ public class Binary_Tree {
             return true;
         } else
             System.out.println("Não é similar");
-            return false;
+        return false;
     }
 
 /////Metodos AVL
@@ -212,7 +222,42 @@ public class Binary_Tree {
     }
 
 
+// Red Black
 
 
+    public void recolor(Node no) {
+        Node pai = no.getFatherNode();
+        Node avo = pai.getFatherNode();
+        Node tio;
 
+        if (no.fatherNode == avo.leftnode) {
+            tio = avo.rightnode;
+        } else {
+            tio = avo.leftnode;
+        }
+        if (tio.getCor() == Color.RED && pai.getCor() != Color.BLACK) {
+            tio.setCor(Color.BLACK);
+            pai.setCor(Color.BLACK);
+            avo.setCor(Color.RED);
+            recolor(avo);
+        }
+
+
+    }
+
+    public void rotate(Node no) {
+
+        Node pai = no.getFatherNode();
+        Node avo = pai.getFatherNode();
+        Node tio;
+        if (no.fatherNode == avo.leftnode) {
+            tio = avo.rightnode;
+        } else {
+            tio = avo.leftnode;
+        }
+
+        if (tio.getCor() == Color.BLACK && pai.getCor() != Color.BLACK){
+
+        }
+    }
 }
