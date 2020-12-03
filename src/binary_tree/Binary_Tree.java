@@ -7,43 +7,38 @@ import static javax.swing.Spring.height;
 
 public class Binary_Tree {
 
-    private Node pai;
     private Node raiz;
 
-    public void addNodeLeft(int value, Color cor, Node pai, Node filho) {
-        Node aux;
-        Node tio;
+    public void addNodeLeft(int value, String cor, Node pai, Node filho) {
         if (pai.hasLeftChld() == true) {
             System.out.println("impossivel adcionar pois esse nó possui " + pai.getValue() + "como filho esquerdo.");
         } else {
-                pai.setLeftnode(filho);
-                filho.setFatherNode(pai);
-                filho.setValue(value);
-                filho.setCor(Color.RED);
-                recolor(filho);
+            pai.setLeftnode(filho);
+            filho.setFatherNode(pai);
+            filho.setValue(value);
+            filho.setCor("RED");
+            recolor(filho);
         }
 
     }
 
-    public void addNodeRight(int value, Color cor, Node pai, Node filha) {
-        Node aux;
+    public void addNodeRight(int value, String cor, Node pai, Node filho) {
         if (pai.hasRightChld() == true) {
             System.out.println("impossivel adcionar pois esse nó possui " + pai.getValue() + "como filho direito.");
         } else {
-            pai.setRightnode(filha);
-            filha.setFatherNode(pai);
-            filha.setValue(value);
-            filha.setCor(Color.RED);
-            recolor(filha);
+            pai.setRightnode(filho);
+            filho.setFatherNode(pai);
+            filho.setValue(value);
+            filho.setCor("RED");
+            recolor(filho);
         }
     }
 
-    public void addNodeFather(int value, Node no, Color cor) {
-        if (pai == null) {
-            pai = no;
-            raiz = pai;
-            cor = Color.BLACK;
-            pai.setValue(value);
+    public void addNodeFather(int value, Node no, String cor) {
+        if (raiz == null) {
+            raiz = no;
+            raiz.setCor("BLACK");
+            raiz.setValue(value);
             System.out.println("Nó inicial adcionado!");
         }
     }
@@ -152,7 +147,7 @@ public class Binary_Tree {
 
     public void preOrdem(Node no) {
         if (no != null) {
-            System.out.print(no.getValue() + " - ");
+            System.out.print(no.getValue() + "," + no.getCor() + " - ");
             preOrdem(no.getLeftnode());
             preOrdem(no.getRightnode());
         }
@@ -163,7 +158,7 @@ public class Binary_Tree {
 
             posOrdem(no.getLeftnode());
             posOrdem(no.getRightnode());
-            System.out.print(no.getValue() + " - ");
+            System.out.print(no.getValue() + "," + no.getCor() + " - ");
         }
     }
 
@@ -171,7 +166,7 @@ public class Binary_Tree {
         if (no != null) {
 
             inOrdem(no.getLeftnode());
-            System.out.print(no.getValue() + " - ");
+            System.out.print(no.getValue() + "," + no.getCor() + " - ");
             inOrdem(no.getRightnode());
         }
     }
@@ -224,24 +219,78 @@ public class Binary_Tree {
 
 // Red Black
 
+    public void addNode(int value, Node no, String cor) {
+
+        if (raiz == null) {
+            raiz = no;
+            raiz.setCor("BLACK");
+            raiz.setValue(value);
+        } else {
+            no.setValue(value);
+            no.setCor("RED");
+            Node pai = busca(no, raiz);
+
+            if (pai.getValue() > no.getValue()){
+                pai.setLeftnode(no);
+                no.setFatherNode(pai);
+                recolor(no);
+            }else {
+                pai.setRightnode(no);
+                no.setFatherNode(pai);
+                recolor(no);
+            }
+        }
+    }
+
+    public Node busca(Node no, Node pai) {
+
+        if (no.getValue() > pai.getValue()) {
+            if (pai.hasRightChld()) {
+                pai = pai.getRightnode();
+                busca(no, pai);
+            }
+//            else {
+//                pai.setRightnode(no);
+//                no.setFatherNode(pai);
+//            }
+        } else if (no.getValue() < pai.getValue()) {
+            if (pai.hasLeftChld()) {
+                pai = pai.getLeftnode();
+                busca(no, pai);
+            }
+//            else {
+//                pai.setLeftnode(no);
+//                no.setFatherNode(pai);
+//            }
+        }
+        return pai;
+    }
+
+    public void  excluir(Node no){
+        busca(no, raiz);
+
+    }
+
 
     public void recolor(Node no) {
+
         Node pai = no.getFatherNode();
-        Node avo = pai.getFatherNode();
-        Node tio;
+        if (no.hasFather() == true && pai.hasFather() == true) {
+            Node avo = pai.getFatherNode();
+            Node tio;
 
-        if (no.fatherNode == avo.leftnode) {
-            tio = avo.rightnode;
-        } else {
-            tio = avo.leftnode;
+            if (no.fatherNode == avo.leftnode) {
+                tio = avo.rightnode;
+            } else {
+                tio = avo.leftnode;
+            }
+            if (tio.getCor() == "RED" && pai.getCor() != "BLACK") {
+                tio.setCor("BLACK");
+                pai.setCor("BLACK");
+                avo.setCor("RED");
+                recolor(avo);
+            }
         }
-        if (tio.getCor() == Color.RED && pai.getCor() != Color.BLACK) {
-            tio.setCor(Color.BLACK);
-            pai.setCor(Color.BLACK);
-            avo.setCor(Color.RED);
-            recolor(avo);
-        }
-
 
     }
 
@@ -256,7 +305,7 @@ public class Binary_Tree {
             tio = avo.leftnode;
         }
 
-        if (tio.getCor() == Color.BLACK && pai.getCor() != Color.BLACK){
+        if (tio.getCor() == "BLACK" && pai.getCor() != "BLACK") {
 
         }
     }

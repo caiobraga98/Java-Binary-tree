@@ -7,7 +7,7 @@ import java.awt.*;
 public class Node {
     int value;
     int altura;
-    Color cor;
+    String cor;
     Node leftnode,rightnode,fatherNode;
 
     public Node() {
@@ -75,11 +75,11 @@ public class Node {
     //metodos Black RED
 
 
-    public Color getCor() {
+    public String getCor() {
         return cor;
     }
 
-    public void setCor(Color cor) {
+    public void setCor(String cor) {
         this.cor = cor;
     }
 }

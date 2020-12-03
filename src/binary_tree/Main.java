@@ -20,18 +20,29 @@ public class Main {
         Node nod8 = new Node();
         Node nod9 = new Node();
 
-        teste.addNodeFather(8, nod1, Color.BLACK);           // F
+        teste.addNode(50, nod1, "RED");
+        teste.addNode(40, nod2, "RED");
+        teste.addNode(60, nod3, "RED");
+        teste.addNode(45, nod4, "BLACK");
+        teste.addNode(65, nod5, "BLACK");
+        teste.addNode(39, nod6, "BLACK");
+        teste.addNode(59, nod7, "BLACK");
 
-        teste.addNodeLeft(3, Color.RED, nod1, nod2);       // B
-        teste.addNodeRight(10, Color.RED, nod1, nod3);     // G
+        System.out.println("\n Pre Ordem ");
+        teste.preOrdem(nod1);
 
-        teste.addNodeLeft(1, Color.BLACK, nod2, nod4);       // A
-        teste.addNodeRight(6, Color.BLACK, nod2, nod5);      // D
-        teste.addNodeRight(14, Color.BLACK, nod3, nod6);    // I
-
-        teste.addNodeLeft(4, Color.BLACK, nod5, nod7);       // C
-        teste.addNodeRight(7, Color.BLACK, nod5, nod8);     // E
-        teste.addNodeLeft(13, Color.BLACK, nod6, nod9);      // H
+//        teste.addNodeFather(8, nod1, "black");           // F
+//
+//        teste.addNodeLeft(3, "RED", nod1, nod2);       // B
+//        teste.addNodeRight(10, "RED", nod1, nod3);     // G
+//
+//        teste.addNodeLeft(1, "BLACK", nod2, nod4);       // A
+//        teste.addNodeRight(6, "BLACK", nod2, nod5);      // D
+//        teste.addNodeRight(14, "BLACK", nod3, nod6);    // I
+//
+//        teste.addNodeLeft(4, Color.BLACK, nod5, nod7);       // C
+//        teste.addNodeRight(7, Color.BLACK, nod5, nod8);     // E
+//        teste.addNodeLeft(13, Color.BLACK, nod6, nod9);      // H
 
 
         //System.out.println("Grau do nó: " + teste.grauNo(nod1));
@@ -67,14 +78,14 @@ public class Main {
 //        teste.preOrdem(nod1);
 //        System.out.println("Quantidade de nós: " + teste.qtdNo(nod1));
 
-        System.out.println("\n Pre Ordem ");
-        teste.preOrdem(nod1);
-        System.out.println("\n Pos Ordem ");
-        teste.posOrdem(nod1);
-        System.out.println("\n Em Ordem ");
-        teste.inOrdem(nod1);
-
-        teste.inverterArvore(nod1);
+//        System.out.println("\n Pre Ordem ");
+//        teste.preOrdem(nod1);
+//        System.out.println("\n Pos Ordem ");
+//        teste.posOrdem(nod1);
+//        System.out.println("\n Em Ordem ");
+//        teste.inOrdem(nod1);
+//
+//        teste.inverterArvore(nod1);
 
 
         // teste.nivelNo(nod);
