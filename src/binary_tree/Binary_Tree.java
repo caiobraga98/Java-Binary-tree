@@ -1,5 +1,7 @@
 package binary_tree;
 
+import sun.security.mscapi.CPublicKey;
+
 import java.awt.*;
 
 import static java.lang.Integer.max;
@@ -230,11 +232,11 @@ public class Binary_Tree {
             no.setCor("RED");
             Node pai = busca(no, raiz);
 
-            if (pai.getValue() > no.getValue()){
+            if (pai.getValue() > no.getValue()) {
                 pai.setLeftnode(no);
                 no.setFatherNode(pai);
                 recolor(no);
-            }else {
+            } else {
                 pai.setRightnode(no);
                 no.setFatherNode(pai);
                 recolor(no);
@@ -266,7 +268,7 @@ public class Binary_Tree {
         return pai;
     }
 
-    public void  excluir(Node no){
+    public void excluir(Node no) {
         busca(no, raiz);
 
     }
@@ -306,7 +308,91 @@ public class Binary_Tree {
         }
 
         if (tio.getCor() == "BLACK" && pai.getCor() != "BLACK") {
-
+            if (avo.getLeftnode() == pai && pai.getLeftnode() == no) {
+                leftLeft(avo, pai, no);
+            }
+            if (avo.getLeftnode() == pai && pai.getRightnode() == no) {
+                leftRight(avo, pai, no);
+            }
+            if (avo.getRightnode() == pai && pai.getRightnode() == no) {
+                rightRight(avo, pai, no);
+            }
+            if (avo.getRightnode() == pai && pai.getLeftnode() == no) {
+                rightLeft(avo, pai, no);
+            }
         }
     }
+
+    // left left case
+    public void leftLeft(Node avo, Node pai, Node no) {
+        if (pai.hasRightChld()) {
+            Node aux = pai.getRightnode();
+            avo.setFatherNode(pai);
+            pai.setRightnode(avo);
+            avo.setLeftnode(aux);
+            String x = avo.getCor();
+            avo.setCor(pai.getCor());
+            pai.setCor(x);
+        } else {
+            avo.setFatherNode(pai);
+            avo.setLeftnode(null);
+            pai.setRightnode(avo);
+            String x = avo.getCor();
+            avo.setCor(pai.getCor());
+            pai.setCor(x);
+        }
+
+    }
+
+    // left right case
+    public void leftRight(Node avo, Node pai, Node no) {
+        if (no.hasLeftChld()) {
+            Node aux = no.getLeftnode();
+            no.setLeftnode(pai);
+            no.setFatherNode(avo);
+            pai.setRightnode(aux);
+
+        } else {
+            no.setLeftnode(pai);
+            no.setFatherNode(avo);
+            pai.setRightnode(null);
+        }
+        pai.setFatherNode(no);
+        avo.setLeftnode(no);
+        //na arvore o no se torna antecessor do pai
+        leftLeft(avo, no, pai);
+    }
+
+    public void rightRight(Node avo, Node pai, Node no) {
+        if (pai.hasLeftChld()) {
+            Node aux = pai.getLeftnode();
+            avo.setFatherNode(pai);
+            avo.setRightnode(aux);
+            pai.setLeftnode(avo);
+        } else {
+            avo.setFatherNode(pai);
+            pai.setLeftnode(avo);
+            avo.setRightnode(null);
+        }
+        String x = avo.getCor();
+        avo.setCor(pai.getCor());
+        pai.setCor(x);
+    }
+
+    public void rightLeft(Node avo, Node pai, Node no) {
+        if (no.hasRightChld()) {
+            Node aux = no.getRightnode();
+            pai.setLeftnode(aux);
+
+        } else {
+            pai.setLeftnode(null);
+        }
+        pai.setFatherNode(no);
+        no.setRightnode(pai);
+        no.setFatherNode(avo);
+        avo.setRightnode(no);
+//na arvore o no se torna antecessor do pai
+        rightRight(avo, no, pai);
+    }
+
 }
