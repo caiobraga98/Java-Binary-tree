@@ -19,7 +19,7 @@ public class Binary_Tree {
             filho.setFatherNode(pai);
             filho.setValue(value);
             filho.setCor("RED");
-            recolor(filho);
+            balancear(filho);
         }
 
     }
@@ -32,7 +32,7 @@ public class Binary_Tree {
             filho.setFatherNode(pai);
             filho.setValue(value);
             filho.setCor("RED");
-            recolor(filho);
+            balancear(filho);
         }
     }
 
@@ -221,27 +221,25 @@ public class Binary_Tree {
 
 // Red Black
 
-    public void addNode(int value, Node no, String cor) {
+    public void addNode(int value, Node no) {
 
         if (raiz == null) {
             raiz = no;
-            raiz.setCor("BLACK");
             raiz.setValue(value);
         } else {
             no.setValue(value);
             no.setCor("RED");
             Node pai = busca(no, raiz);
 
-            if (pai.getValue() > no.getValue()) {
-                pai.setLeftnode(no);
-                no.setFatherNode(pai);
-                recolor(no);
-            } else {
-                pai.setRightnode(no);
-                no.setFatherNode(pai);
-                recolor(no);
-            }
+            no.setFatherNode(pai);
+
+
+            balancear(no);
+            //        rotate(no);
+
+
         }
+        raiz.setCor("BLACK");
     }
 
     public Node busca(Node no, Node pai) {
@@ -250,22 +248,21 @@ public class Binary_Tree {
             if (pai.hasRightChld()) {
                 pai = pai.getRightnode();
                 busca(no, pai);
+            } else {
+                pai.setRightnode(no);
+                no.setFatherNode(pai);
             }
-//            else {
-//                pai.setRightnode(no);
-//                no.setFatherNode(pai);
-//            }
         } else if (no.getValue() < pai.getValue()) {
             if (pai.hasLeftChld()) {
                 pai = pai.getLeftnode();
                 busca(no, pai);
+            } else {
+                pai.setLeftnode(no);
+                no.setFatherNode(pai);
+
             }
-//            else {
-//                pai.setLeftnode(no);
-//                no.setFatherNode(pai);
-//            }
         }
-        return pai;
+        return no.getFatherNode();
     }
 
     public void excluir(Node no) {
@@ -273,53 +270,55 @@ public class Binary_Tree {
 
     }
 
+    public void balancear(Node no) {
 
-    public void recolor(Node no) {
 
-        Node pai = no.getFatherNode();
-        if (no.hasFather() == true && pai.hasFather() == true) {
+        if (no.getFatherNode() != raiz) {
+            Node pai = no.getFatherNode();
             Node avo = pai.getFatherNode();
             Node tio;
-
             if (no.fatherNode == avo.leftnode) {
                 tio = avo.rightnode;
             } else {
                 tio = avo.leftnode;
             }
-            if (tio.getCor() == "RED" && pai.getCor() != "BLACK") {
-                tio.setCor("BLACK");
-                pai.setCor("BLACK");
-                avo.setCor("RED");
-                recolor(avo);
+            if (tio != null && tio.getCor() == "RED" && pai.getCor() == "RED") {
+                recolor(avo, tio, pai, no);
+            } else {
+                if (no.hasRightChld() == false && no.hasLeftChld() == false) {
+
+                    if (tio == null || tio.getCor() == "BLACK" && pai.getCor() == "RED") {
+                        rotate(avo, pai, no);
+                    }
+                }
             }
+        }
+    }
+
+    public void recolor(Node avo, Node tio, Node pai, Node no) {
+
+        tio.setCor("BLACK");
+        pai.setCor("BLACK");
+        avo.setCor("RED");
+        if (avo != raiz) {
+            balancear(avo);
         }
 
     }
 
-    public void rotate(Node no) {
+    public void rotate(Node avo, Node pai, Node no) {
 
-        Node pai = no.getFatherNode();
-        Node avo = pai.getFatherNode();
-        Node tio;
-        if (no.fatherNode == avo.leftnode) {
-            tio = avo.rightnode;
-        } else {
-            tio = avo.leftnode;
+        if (avo.getLeftnode() == pai && pai.getLeftnode() == no) {
+            leftLeft(avo, pai, no);
         }
-
-        if (tio.getCor() == "BLACK" && pai.getCor() != "BLACK") {
-            if (avo.getLeftnode() == pai && pai.getLeftnode() == no) {
-                leftLeft(avo, pai, no);
-            }
-            if (avo.getLeftnode() == pai && pai.getRightnode() == no) {
-                leftRight(avo, pai, no);
-            }
-            if (avo.getRightnode() == pai && pai.getRightnode() == no) {
-                rightRight(avo, pai, no);
-            }
-            if (avo.getRightnode() == pai && pai.getLeftnode() == no) {
-                rightLeft(avo, pai, no);
-            }
+        if (avo.getLeftnode() == pai && pai.getRightnode() == no) {
+            leftRight(avo, pai, no);
+        }
+        if (avo.getRightnode() == pai && pai.getRightnode() == no) {
+            rightRight(avo, pai, no);
+        }
+        if (avo.getRightnode() == pai && pai.getLeftnode() == no) {
+            rightLeft(avo, pai, no);
         }
     }
 
@@ -327,6 +326,8 @@ public class Binary_Tree {
     public void leftLeft(Node avo, Node pai, Node no) {
         if (pai.hasRightChld()) {
             Node aux = pai.getRightnode();
+            pai.setFatherNode(avo.getFatherNode());
+            avo.getFatherNode().setRightnode(pai);
             avo.setFatherNode(pai);
             pai.setRightnode(avo);
             avo.setLeftnode(aux);
@@ -334,9 +335,20 @@ public class Binary_Tree {
             avo.setCor(pai.getCor());
             pai.setCor(x);
         } else {
-            avo.setFatherNode(pai);
-            avo.setLeftnode(null);
-            pai.setRightnode(avo);
+            if (avo == raiz){
+                pai.setRightnode(avo);
+                avo.setFatherNode(pai);
+                avo.setLeftnode(null);
+                raiz = pai;
+            }else {
+
+                pai.setFatherNode(avo.getFatherNode());
+                avo.getFatherNode().setLeftnode(pai);
+                avo.setFatherNode(pai);
+                avo.setLeftnode(null);
+                pai.setRightnode(avo);
+
+            }
             String x = avo.getCor();
             avo.setCor(pai.getCor());
             pai.setCor(x);
@@ -366,13 +378,25 @@ public class Binary_Tree {
     public void rightRight(Node avo, Node pai, Node no) {
         if (pai.hasLeftChld()) {
             Node aux = pai.getLeftnode();
+            pai.setFatherNode(avo.getFatherNode());
+            avo.getFatherNode().setRightnode(pai);
             avo.setFatherNode(pai);
+            pai.setLeftnode(avo);
             avo.setRightnode(aux);
-            pai.setLeftnode(avo);
+
         } else {
-            avo.setFatherNode(pai);
-            pai.setLeftnode(avo);
-            avo.setRightnode(null);
+            if (avo == raiz){
+                pai.setLeftnode(avo);
+                avo.setFatherNode(pai);
+                avo.setRightnode(null);
+                raiz = pai;
+            }else {
+                pai.setFatherNode(avo.getFatherNode());
+                avo.getFatherNode().setLeftnode(pai);
+                avo.setFatherNode(pai);
+                avo.setRightnode(null);
+                pai.setLeftnode(avo);
+            }
         }
         String x = avo.getCor();
         avo.setCor(pai.getCor());
@@ -395,4 +419,7 @@ public class Binary_Tree {
         rightRight(avo, no, pai);
     }
 
+    public Node getRaiz(){
+     return raiz;
+    }
 }

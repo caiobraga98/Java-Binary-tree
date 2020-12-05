@@ -74,7 +74,6 @@ public class Node {
 
     //metodos Black RED
 
-
     public String getCor() {
         return cor;
     }

@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class Main {
 
-// https://medium.com/@luksrn/red-black-tree-estrutura-de-dados-4e13dda71280
 
     public static void main(String[] args) {
         // TODO code application logic here
@@ -20,18 +19,26 @@ public class Main {
         Node nod8 = new Node();
         Node nod9 = new Node();
 
-        teste.addNode(50, nod1, "RED");
-        teste.addNode(40, nod2, "RED");
-        teste.addNode(60, nod3, "RED");
-        teste.addNode(45, nod4, "BLACK");
-        teste.addNode(65, nod5, "BLACK");
-        teste.addNode(39, nod6, "BLACK");
-        teste.addNode(59, nod7, "BLACK");
+        //aula
+//        teste.addNode(41, nod1);
+//        teste.addNode(38, nod2);
+//        teste.addNode(31, nod3);
+//        teste.addNode(12, nod4);
+//        teste.addNode(19, nod5);
+
+        //red black
+        teste.addNode(11, nod1);
+        teste.addNode(1, nod2);
+        teste.addNode(14, nod3);
+        teste.addNode(2, nod4);
+        teste.addNode(7, nod5);
+        teste.addNode(15, nod6);
 
         System.out.println("\n Pre Ordem ");
-        teste.preOrdem(nod1);
+        Node raiz = teste.getRaiz();
+        teste.preOrdem(raiz);
 
-//        teste.addNodeFather(8, nod1, "black");           // F
+//        teste.addNodeFather(8, nod1, "black")e;           // F
 //
 //        teste.addNodeLeft(3, "RED", nod1, nod2);       // B
 //        teste.addNodeRight(10, "RED", nod1, nod3);     // G
